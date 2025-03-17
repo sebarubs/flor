@@ -1,15 +1,15 @@
-/* Estilo general */
+/* Fondo en tonos pastel */
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #ffdd57, #ffcc33);
+    background: #FFFAE3; /* Color crema pastel */
     font-family: 'Georgia', serif;
     text-align: center;
     overflow: hidden;
     color: black;
 }
 
-/* Canvas (Girasol animado) */
+/* Canvas (para la animación de la flor) */
 canvas {
     position: fixed;
     top: 0;
@@ -19,38 +19,55 @@ canvas {
     z-index: -1;
 }
 
-/* Cartas con efecto de papel */
+/* Cartas con efecto de volteo */
 .carta {
     position: absolute;
     top: 50%;
-    width: 320px;
-    padding: 20px;
-    background: #fff8dc;
-    color: black;
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%) scale(0.9);
-    transition: transform 0.5s ease-in-out;
+    width: 350px; /* Más ancha para la izquierda */
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    transform: translateY(-50%);
 }
 
-/* Animación para abrir cartas */
-.carta:hover {
-    transform: translateY(-50%) scale(1);
-}
-
-/* Posición de las cartas */
+/* La carta izquierda es más ancha */
 .izquierda {
     left: 10%;
+    width: 400px;
 }
 
 .derecha {
     right: 10%;
 }
 
-/* Contenido dentro de las cartas */
-.contenido {
-    font-size: 1.1em;
-    line-height: 1.4;
+/* Contenedor del contenido de la carta */
+.carta .contenido {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: #fff8dc;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Parte trasera de la carta */
+.atras {
+    transform: rotateY(180deg);
+}
+
+/* Animación de volteo */
+.carta.volteada .frente {
+    transform: rotateY(180deg);
+}
+
+.carta.volteada .atras {
+    transform: rotateY(0);
 }
 
 /* Pie de página */
