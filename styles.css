@@ -1,15 +1,15 @@
-/* Fondo general */
+/* Estilo general */
 body {
     margin: 0;
     padding: 0;
-    background: #0b0c10;
-    color: white;
-    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #ffdd57, #ffcc33);
+    font-family: 'Georgia', serif;
     text-align: center;
     overflow: hidden;
+    color: black;
 }
 
-/* Estilo del canvas (Animación de la flor) */
+/* Canvas (Girasol animado) */
 canvas {
     position: fixed;
     top: 0;
@@ -19,20 +19,26 @@ canvas {
     z-index: -1;
 }
 
-/* Cartas */
+/* Cartas con efecto de papel */
 .carta {
     position: absolute;
     top: 50%;
-    width: 300px;
+    width: 320px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: #fff8dc;
     color: black;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%) scale(0.9);
+    transition: transform 0.5s ease-in-out;
 }
 
-/* Posiciones de las cartas */
+/* Animación para abrir cartas */
+.carta:hover {
+    transform: translateY(-50%) scale(1);
+}
+
+/* Posición de las cartas */
 .izquierda {
     left: 10%;
 }
@@ -41,10 +47,16 @@ canvas {
     right: 10%;
 }
 
-/* Estilo del pie de página */
+/* Contenido dentro de las cartas */
+.contenido {
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+/* Pie de página */
 .footer {
     position: fixed;
-    bottom: 20px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
     font-size: 1.2em;
