@@ -1,7 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 body {
     background-color: #E6EBA9;
     font-family: 'Bradley Hand ITC', cursive;
     text-align: center;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .container {
@@ -17,7 +29,15 @@ body {
     perspective: 1000px;
 }
 
-.carta .front, .carta .back {
+.inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    position: relative;
+}
+
+.front, .back {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -28,24 +48,24 @@ body {
     border: 2px solid brown;
     background-color: #FFD700;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     padding: 20px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
     border-radius: 10px;
+    text-align: center;
 }
 
-.carta .back {
+.back {
     background-color: white;
     transform: rotateY(180deg);
+    padding: 15px;
+    font-size: 14px;
+    overflow-y: auto;
 }
 
-.carta:hover .front {
+.carta.flipped .inner {
     transform: rotateY(180deg);
-}
-
-.carta:hover .back {
-    transform: rotateY(0deg);
 }
 
 .flor {
