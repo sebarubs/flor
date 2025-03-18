@@ -1,11 +1,11 @@
-document.getElementById("playMusic").addEventListener("click", function () {
-    var audio = document.getElementById("backgroundMusic");
-    if (audio.paused) {
-        audio.play();
-        this.textContent = "⏸ Pausar música";
+document.getElementById("musicButton").addEventListener("click", function () {
+    var music = document.getElementById("music");
+    if (music.paused) {
+        music.play();
+        this.textContent = "⏸️ Pausar música";
     } else {
-        audio.pause();
-        this.textContent = "▶ Reproducir música";
+        music.pause();
+        this.textContent = "🎵 Reproducir música";
     }
 });
 
