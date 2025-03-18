@@ -1,65 +1,40 @@
-// Función para voltear las cartas
-function voltearCarta(element) {
-    element.classList.toggle("volteada");
+function flipCard(card) {
+    card.classList.toggle('flipped');
 }
 
-// Música de fondo
-window.onload = function() {
-    const musica = document.getElementById("musica");
-    musica.volume = 0.5; // Volumen al 50%
-};
+// 🎵 Música de fondo
+document.getElementById("music-button").addEventListener("click", function() {
+    let audio = document.getElementById("background-music");
+    if (audio.paused) {
+        audio.play();
+        this.textContent = "⏸ Pausar música";
+    } else {
+        audio.pause();
+        this.textContent = "🎵 Reproducir música";
+    }
+});
 
-// Configuración de Canvas
-const canvas = document.getElementById("canvas");
+// 🌻 Animación de la flor
+const canvas = document.getElementById("flowerCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let angle = 0;
-
-// Dibujar pétalos girando
-function drawPetal(x, y, angle) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(angle);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.quadraticCurveTo(20, -40, 40, 0);
-    ctx.quadraticCurveTo(20, 40, 0, 0);
-    ctx.fillStyle = "#FFD700"; // Amarillo girasol
-    ctx.fill();
-    ctx.restore();
-}
-
-// Dibujar un girasol animado
-function drawSunflower(x, y) {
-    // Rotación de pétalos
-    for (let i = 0; i < 12; i++) {
-        drawPetal(x, y, angle + (Math.PI / 6) * i);
+function drawFlower(x, y) {
+    ctx.fillStyle = "#FFD700";
+    for (let i = 0; i < 10; i++) {
+        ctx.beginPath();
+        ctx.ellipse(x, y, 20, 40, (Math.PI / 5) * i, 0, 2 * Math.PI);
+        ctx.fill();
     }
-
-    // Centro del girasol
     ctx.beginPath();
-    ctx.arc(x, y, 20, 0, Math.PI * 2);
-    ctx.fillStyle = "#8B4513"; // Marrón centro
+    ctx.arc(x, y, 15, 0, 2 * Math.PI);
+    ctx.fillStyle = "#8B4513";
     ctx.fill();
-
-    // Tallo
-    ctx.beginPath();
-    ctx.moveTo(x, y + 20);
-    ctx.lineTo(x, y + 100);
-    ctx.strokeStyle = "green";
-    ctx.lineWidth = 6;
-    ctx.stroke();
 }
 
-// Animación del girasol girando
-function animate() {
+function animateFlower() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawSunflower(canvas.width / 2, canvas.height / 2);
-    angle += 0.01; // Gira lentamente
-    requestAnimationFrame(animate);
+    drawFlower(150, 150);
+    requestAnimationFrame(animateFlower);
 }
 
-animate();
+animateFlower();
