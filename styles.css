@@ -1,80 +1,58 @@
-/* Fondo en tonos pastel */
 body {
-    margin: 0;
-    padding: 0;
-    background: #FFFAE3; /* Color crema pastel */
-    font-family: 'Georgia', serif;
+    background-color: #E6EBA9; /* Color pastel */
+    font-family: Bradley Hand ITC, sans-serif;
     text-align: center;
-    overflow: hidden;
-    color: black;
 }
 
-/* Canvas (para la animación de la flor) */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.card {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+}
+
+.card-inner {
     width: 100%;
     height: 100%;
-    z-index: -1;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    position: relative;
 }
 
-/* Cartas con efecto de volteo */
-.carta {
-    position: absolute;
-    top: 50%;
-    width: 350px; /* Más ancha para la izquierda */
-    height: 200px;
-    perspective: 1000px;
-    cursor: pointer;
-    transform: translateY(-50%);
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
 }
 
-/* La carta izquierda es más ancha */
-.izquierda {
-    left: 10%;
-    width: 400px;
-}
-
-.derecha {
-    right: 10%;
-}
-
-/* Contenedor del contenido de la carta */
-.carta .contenido {
+.card-front, .card-back {
     width: 100%;
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
-    background: #fff8dc;
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    text-align: center;
+    align-items: center;
+    border: 2px solid #8B4513;
+    border-radius: 10px;
+    background-color: #FFF8DC;
 }
 
-/* Parte trasera de la carta */
-.atras {
+.card-front {
+    background-color: #FFD700;
+}
+
+.card-back {
     transform: rotateY(180deg);
+    padding: 15px;
 }
 
-/* Animación de volteo */
-.carta.volteada .frente {
-    transform: rotateY(180deg);
-}
-
-.carta.volteada .atras {
-    transform: rotateY(0);
-}
-
-/* Pie de página */
-.footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 1.2em;
+#flowerCanvas {
+    width: 300px;
+    height: 300px;
 }
